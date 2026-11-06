@@ -21,7 +21,7 @@ l_part:"Part name",l_partno:"Part number",l_cond:"Part condition",c_new:"New",c_
 l_type:"Part type",t_orig:"Genuine",t_after:"Aftermarket",l_desc:"Detailed description",l_imgs:"Photos of the part or damaged area",l_imgs_h:"(up to 6, 5MB each)",
 l_name:"Name",l_phone:"Mobile number",l_city:"City",l_contact:"Preferred contact method",m_wa:"WhatsApp",m_call:"Phone call",m_sms:"SMS",
 back:"Back",next:"Next",submit:"Submit part request",
-ok_title:"Your request was received",ok_msg:"The Qat'atuk team will review your request and contact you soon. Keep your request number.",new_req:"New request",
+ok_title:"Your request is ready to send",ok_msg:"Tap Send inside WhatsApp so your request reaches the Qat'atuk team. The request is not received until you send the message.",new_req:"New request",wa_send:"Open WhatsApp and send the request",wa_note:"If WhatsApp did not open automatically, tap the button. Keep your request number.",img_note:"To attach part photos: after WhatsApp opens, send them in the same chat before or after the message.",
 about_title:"About us",about_txt:"Qat'atuk is a Saudi platform specialized in receiving requests to find car spare parts and source them on demand. We are not a traditional store and hold no fixed stock; we search suppliers inside and outside Saudi Arabia, then present you with the available options and prices. Agreement, payment, purchase and shipping all happen outside the site through direct contact with you.",
 band_t:"Ready to find your part?",band_d:"Send your request now and let us do the searching.",
 ct_phone:"Call us",ct_wa:"WhatsApp",ct_wa_btn:"Start a chat"};

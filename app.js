@@ -1,7 +1,5 @@
 (function(){
 const cfg=window.QT_CONFIG||{};
-const ready=!!(cfg.SUPABASE_URL&&cfg.SUPABASE_ANON_KEY&&window.supabase);
-const sb=ready?window.supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY):null;
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const T=k=>QT_I18N.t(k);
 
@@ -24,7 +22,6 @@ $$('#menu a').forEach(a=>a.onclick=()=>$('#menu').classList.remove('open'));
 $('#yr').textContent=new Date().getFullYear();
 $('#phoneLink').textContent=cfg.CONTACT_PHONE_DISPLAY||'';$('#phoneLink').href='tel:'+(cfg.CONTACT_PHONE_DISPLAY||'');
 $('#waLink').href='https://wa.me/'+(cfg.WHATSAPP_NUMBER||'');
-if(!ready)$('#configWarn').hidden=false;
 
 /* steps */
 let step=0;const panes=$$('.step-pane'),bars=$$('#progress div');
@@ -40,50 +37,37 @@ const rules={
   1:[['#part_name',v=>v.trim().length>=2?'':T('required')]],
   2:[['#customer_name',v=>v.trim().length>=2?'':T('required')],['#phone',v=>/^05\d{8}$/.test(normPhone(v))?'':T('phone')],['#city',v=>v?'':T('required')]]};
 function validate(n){let ok=true;rules[n].forEach(([s,f])=>{const el=$(s);if(!setErr(el,f(el.value)))ok=false;});
-  if(n===1&&!imgOk())ok=false;
   if(!ok){const e=$('#formErr');e.textContent=T('fix');e.hidden=false;}return ok;}
 $('#nextBtn').onclick=()=>{if(validate(step))show(step+1)};
 $('#backBtn').onclick=()=>show(step-1);
 $$('input,select,textarea').forEach(el=>el.addEventListener('input',()=>el.classList.remove('invalid')));
 
-/* images */
-let files=[];const OKT=['image/jpeg','image/png','image/webp'],MAX=5*1024*1024;
-function imgOk(){const e=$('#imgErr');
-  if(files.length>6){e.textContent=T('imgs_max');return false}
-  for(const f of files){if(!OKT.includes(f.type)){e.textContent=T('img_type');return false}if(f.size>MAX){e.textContent=T('img_size');return false}}
-  e.textContent='';return true;}
-function drawPrev(){const box=$('#previews');box.innerHTML='';
-  files.forEach((f,i)=>{const d=document.createElement('div'),im=document.createElement('img'),b=document.createElement('button');
-    im.src=URL.createObjectURL(f);b.type='button';b.textContent='×';b.onclick=()=>{files.splice(i,1);drawPrev();imgOk()};d.append(im,b);box.append(d)});}
-$('#images').onchange=e=>{files=files.concat([...e.target.files]);e.target.value='';drawPrev();if(!imgOk())files=files.filter(f=>OKT.includes(f.type)&&f.size<=MAX).slice(0,6),drawPrev();};
 
-/* submit */
-$('#reqForm').addEventListener('submit',async ev=>{
+/* واتساب */
+function genNo(){const r=crypto.getRandomValues(new Uint32Array(1))[0].toString(36).toUpperCase().padStart(6,'0').slice(-6);return 'QT-'+String(new Date().getFullYear()).slice(2)+'-'+r;}
+function buildWa(no,p){
+  const L=QT_I18N.lang==='ar',sel=s=>$(s).selectedOptions[0].textContent;
+  const lines=[L?'طلب توفير قطعة غيار جديد':'New spare part request',
+    (L?'رقم الطلب: ':'Request no: ')+no,'',
+    (L?'الاسم: ':'Name: ')+p.name,(L?'الجوال: ':'Mobile: ')+p.phone,(L?'المدينة: ':'City: ')+sel('#city'),(L?'وسيلة التواصل: ':'Contact: ')+sel('#contact_method'),'',
+    (L?'السيارة: ':'Car: ')+[sel('#car_make'),p.model,p.year,p.trim].filter(Boolean).join(' '),
+    p.engine?(L?'المحرك: ':'Engine: ')+p.engine:'',p.vin?'VIN: '+p.vin:'','',
+    (L?'القطعة: ':'Part: ')+p.part+(p.partno?' ('+p.partno+')':''),
+    (L?'الحالة: ':'Condition: ')+sel('#part_condition')+' / '+sel('#part_type'),
+    p.desc?(L?'الوصف: ':'Details: ')+p.desc:''].filter((x,i,arr)=>x!==''||arr[i-1]!=='');
+  return 'https://wa.me/'+(cfg.WHATSAPP_NUMBER||'')+'?text='+encodeURIComponent(lines.join('\n'));
+}
+$('#reqForm').addEventListener('submit',ev=>{
   ev.preventDefault();
   for(const n of [0,1,2]){if(!validate(n)){show(n);validate(n);return}}
-  const err=$('#formErr');err.hidden=true;
   if($('#website').value)return; // honeypot
-  if(!ready){err.textContent=T('no_cfg');err.hidden=false;return}
-  const btn=$('#submitBtn');btn.disabled=true;const old=btn.textContent;btn.textContent=T('sending');
-  const id=crypto.randomUUID(),paths=[];
-  try{
-    for(let i=0;i<files.length;i++){
-      const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[files[i].type];
-      const path=`${id}/${i+1}-${Date.now()}.${ext}`;
-      const {error}=await sb.storage.from('request-images').upload(path,files[i],{contentType:files[i].type,upsert:false});
-      if(error)throw error;paths.push(path);
-    }
-    const g=s=>$(s).value;
-    const payload={id,customer_name:g('#customer_name'),phone:normPhone(g('#phone')),city:g('#city'),car_make:g('#car_make'),car_model:g('#car_model'),
-      car_year:+g('#car_year'),car_trim:g('#car_trim'),engine:g('#engine'),vin:g('#vin'),part_name:g('#part_name'),part_number:g('#part_number'),
-      part_condition:g('#part_condition'),part_type:g('#part_type'),description:g('#description'),image_paths:paths,contact_method:g('#contact_method')};
-    const {data,error}=await sb.rpc('submit_part_request',{p:payload});
-    if(error)throw error;
-    $('#reqNo').textContent=data;$('#reqForm').hidden=true;$('#successBox').hidden=false;
-    $('#request').scrollIntoView({behavior:'smooth'});
-  }catch(e){console.error(e);err.textContent=T('fail');err.hidden=false;}
-  finally{btn.disabled=false;btn.textContent=old;QT_I18N.apply();}
+  const g=s=>$(s).value.trim();
+  const no=genNo();
+  const wa=buildWa(no,{name:g('#customer_name'),phone:normPhone(g('#phone')),model:g('#car_model'),year:g('#car_year'),trim:g('#car_trim'),engine:g('#engine'),vin:g('#vin').toUpperCase(),part:g('#part_name'),partno:g('#part_number'),desc:g('#description')});
+  $('#reqNo').textContent=no;$('#waSend').href=wa;$('#reqForm').hidden=true;$('#successBox').hidden=false;
+  $('#request').scrollIntoView({behavior:'smooth'});
+  try{window.open(wa,'_blank','noopener')}catch(_){}
 });
-$('#newReq').onclick=()=>{$('#reqForm').reset();files=[];drawPrev();$('#reqForm').hidden=false;$('#successBox').hidden=true;show(0);};
+$('#newReq').onclick=()=>{$('#reqForm').reset();$('#reqForm').hidden=false;$('#successBox').hidden=true;show(0);};
 show(0);
 })();

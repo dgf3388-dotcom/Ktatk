@@ -82,7 +82,6 @@
   <h2 class="sec-title" data-i18n="req_title">اطلب قطعة غيار</h2>
   <p class="sec-sub" data-i18n="req_sub">عبّئ بيانات سيارتك والقطعة، وسنتواصل معك بالخيارات المتاحة.</p>
   <div class="form-wrap">
-    <div id="configWarn" class="alert warn" hidden data-i18n="cfg_warn">خدمة استقبال الطلبات غير مفعّلة بعد (لم تُضبط بيانات Supabase في config.js).</div>
     <form id="reqForm" novalidate>
       <div class="progress" id="progress"><div data-i18n="p1">بيانات السيارة</div><div data-i18n="p2">بيانات القطعة</div><div data-i18n="p3">بياناتك</div></div>
 
@@ -101,8 +100,7 @@
         <div><label for="part_condition" data-i18n="l_cond">حالة القطعة المطلوبة</label><select id="part_condition"><option value="new" data-i18n="c_new">جديدة</option><option value="used" data-i18n="c_used">مستعملة</option><option value="any" selected data-i18n="any">لا يهم</option></select></div>
         <div><label for="part_type" data-i18n="l_type">نوع القطعة</label><select id="part_type"><option value="original" data-i18n="t_orig">أصلية</option><option value="aftermarket" data-i18n="t_after">تجارية</option><option value="any" selected data-i18n="any">لا يهم</option></select></div>
         <div class="full"><label for="description"><span data-i18n="l_desc">وصف تفصيلي للقطعة</span> <span class="opt" data-i18n="opt">(اختياري)</span></label><textarea id="description" rows="4" maxlength="2000"></textarea></div>
-        <div class="full"><label for="images"><span data-i18n="l_imgs">صور القطعة أو الجزء المتضرر</span> <span class="opt" data-i18n="l_imgs_h">(حتى 6 صور، 5MB لكل صورة)</span></label>
-          <input id="images" type="file" accept="image/jpeg,image/png,image/webp" multiple><div class="err" id="imgErr"></div><div class="previews" id="previews"></div></div>
+        <div class="full alert warn" style="margin:0" data-i18n="img_note">لإرفاق صور القطعة: بعد فتح واتساب أرسلها في نفس المحادثة قبل إرسال الرسالة أو بعدها.</div>
       </div></div>
 
       <div class="step-pane" data-step="2"><div class="fields">
@@ -122,9 +120,11 @@
     </form>
     <div id="successBox" class="success" hidden>
       <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h3 data-i18n="ok_title">تم استلام طلبك بنجاح</h3>
+      <h3 data-i18n="ok_title">طلبك جاهز للإرسال</h3>
       <div class="reqno" id="reqNo"></div>
-      <p data-i18n="ok_msg">سيقوم فريق قطعتك بمراجعة طلبك والتواصل معك قريباً. احتفظ برقم الطلب للمراجعة.</p>
+      <p data-i18n="ok_msg">اضغط «إرسال» داخل واتساب ليصل طلبك إلى فريق قطعتك. لا يُعتبر الطلب مستلماً قبل إرسال الرسالة.</p>
+      <p style="margin-top:16px"><a class="btn btn-primary" id="waSend" target="_blank" rel="noopener" href="#" data-i18n="wa_send">افتح واتساب وأرسل الطلب</a></p>
+      <p class="sec-sub" style="margin:8px 0 0;font-size:.85rem" data-i18n="wa_note">إذا لم يُفتح واتساب تلقائياً، اضغط الزر. احتفظ برقم الطلب للمراجعة.</p>
       <p style="margin-top:16px"><button class="btn btn-outline" id="newReq" type="button" data-i18n="new_req">تقديم طلب جديد</button></p>
     </div>
   </div>
@@ -152,7 +152,6 @@
 </div></footer>
 
 <script src="config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="i18n.js"></script>
 <script src="app.js"></script>
 </body>
