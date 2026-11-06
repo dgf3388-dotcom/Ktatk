@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>قطعتك | نبحث عنها، نوفرها لك</title>
+<meta name="description" content="قطعتك: منصة سعودية للبحث عن قطع غيار السيارات وتوفيرها حسب الطلب.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="gear" viewBox="0 0 40 40"><circle cx="20" cy="20" r="13" fill="none" stroke="#FF8A00" stroke-width="7" stroke-dasharray="5.1 5.1"/><circle cx="20" cy="20" r="12" fill="#FF8A00"/><circle cx="20" cy="20" r="5.5" fill="#fff"/></symbol>
+</defs></svg>
+
+<header><div class="container nav">
+  <a href="#home" class="logo"><svg><use href="#gear"/></svg><span data-i18n="brand">قطعتك</span></a>
+  <nav id="menu"><ul>
+    <li><a href="#home" data-i18n="nav_home">الرئيسية</a></li>
+    <li><a href="#request" data-i18n="nav_request">اطلب قطعة غيار</a></li>
+    <li><a href="#how" data-i18n="nav_how">كيف نعمل؟</a></li>
+    <li><a href="#about" data-i18n="nav_about">من نحن</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">تواصل معنا</a></li>
+  </ul></nav>
+  <div class="nav-actions">
+    <button class="lang" id="langBtn" type="button">English</button>
+    <a class="btn btn-primary" href="#request" data-i18n="cta_request">اطلب قطعة غيار</a>
+    <button class="burger" id="burger" aria-label="menu" type="button">☰</button>
+  </div>
+</div></header>
+
+<main>
+<section class="hero" id="home"><div class="container">
+  <div>
+    <div class="tagline" data-i18n="tagline">نبحث عنها، نوفرها لك.</div>
+    <h1 data-i18n="hero_title">تبحث عن قطعة غيار؟ دعنا نعثر عليها لك.</h1>
+    <p data-i18n="hero_desc">مهما كان نوع سيارتك أو القطعة التي تحتاجها، نبحث لك عنها ونوفرها من مصادر متعددة، جديدة أو مستعملة، أصلية أو تجارية.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#request" data-i18n="cta_request">اطلب قطعة غيار</a>
+      <a class="btn btn-ghost" href="#contact" data-i18n="nav_contact">تواصل معنا</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <svg viewBox="0 0 520 320" role="img" aria-label="car">
+      <circle cx="410" cy="90" r="70" fill="#FF8A00" opacity=".18"/>
+      <use href="#gear" x="330" y="10" width="150" height="150" opacity=".9"/>
+      <path d="M40 220c0-18 8-30 30-36l70-18 52-48c8-8 20-12 32-12h110c14 0 26 6 36 16l40 42 40 10c18 4 28 16 28 34v20c0 8-6 14-14 14h-18a50 50 0 0 0-100 0H210a50 50 0 0 0-100 0H54c-8 0-14-6-14-14z" fill="#fff"/>
+      <path d="M190 160l30-30c6-6 14-8 22-8h96c8 0 16 4 22 10l28 28z" fill="#0d3a66"/>
+      <circle cx="160" cy="246" r="38" fill="#082746" stroke="#fff" stroke-width="6"/><circle cx="160" cy="246" r="14" fill="#FF8A00"/>
+      <circle cx="396" cy="246" r="38" fill="#082746" stroke="#fff" stroke-width="6"/><circle cx="396" cy="246" r="14" fill="#FF8A00"/>
+      <rect x="60" y="214" width="26" height="12" rx="6" fill="#FF8A00"/>
+    </svg>
+  </div>
+</div></section>
+
+<section id="why"><div class="container">
+  <h2 class="sec-title" data-i18n="why_title">لماذا تختار قطعتك؟</h2>
+  <p class="sec-sub" data-i18n="why_sub">نتولى البحث نيابة عنك حتى تصلك القطعة المناسبة.</p>
+  <div class="grid g5">
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3 data-i18n="f1_t">البحث عن القطع النادرة</h3><p data-i18n="f1_d">نصل إلى القطع التي يصعب إيجادها في المتاجر المعتادة.</p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg></div><h3 data-i18n="f2_t">خيارات أصلية وتجارية</h3><p data-i18n="f2_d">تختار ما يناسب ميزانيتك وسيارتك.</p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div><h3 data-i18n="f3_t">قطع جديدة ومستعملة</h3><p data-i18n="f3_d">نوفر الحالتين حسب طلبك وتوفرها.</p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.5 8l3.5 8M16.5 8L13 16M8.5 6h7"/></svg></div><h3 data-i18n="f4_t">البحث لدى موردين متعددين</h3><p data-i18n="f4_d">داخل السعودية وخارجها لنقارن الخيارات لك.</p></div>
+    <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 7h12v9H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></div><h3 data-i18n="f5_t">الشحن إلى جميع مناطق السعودية</h3><p data-i18n="f5_d">نوصل القطعة إلى مدينتك بعد الاتفاق.</p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="how"><div class="container">
+  <h2 class="sec-title" data-i18n="how_title">كيف تعمل الخدمة؟</h2>
+  <p class="sec-sub" data-i18n="how_sub">أربع خطوات بسيطة.</p>
+  <div class="grid g4">
+    <div class="card step"><div class="num">1</div><h3 data-i18n="s1">أرسل طلبك.</h3></div>
+    <div class="card step"><div class="num">2</div><h3 data-i18n="s2">نبحث عن القطعة.</h3></div>
+    <div class="card step"><div class="num">3</div><h3 data-i18n="s3">نتواصل معك بالخيارات والأسعار.</h3></div>
+    <div class="card step"><div class="num">4</div><h3 data-i18n="s4">بعد الاتفاق نشتري القطعة ونشحنها إليك.</h3></div>
+  </div>
+</div></section>
+
+<section id="request"><div class="container">
+  <h2 class="sec-title" data-i18n="req_title">اطلب قطعة غيار</h2>
+  <p class="sec-sub" data-i18n="req_sub">عبّئ بيانات سيارتك والقطعة، وسنتواصل معك بالخيارات المتاحة.</p>
+  <div class="form-wrap">
+    <div id="configWarn" class="alert warn" hidden data-i18n="cfg_warn">خدمة استقبال الطلبات غير مفعّلة بعد (لم تُضبط بيانات Supabase في config.js).</div>
+    <form id="reqForm" novalidate>
+      <div class="progress" id="progress"><div data-i18n="p1">بيانات السيارة</div><div data-i18n="p2">بيانات القطعة</div><div data-i18n="p3">بياناتك</div></div>
+
+      <div class="step-pane" data-step="0"><div class="fields">
+        <div><label for="car_make" data-i18n="l_make">الشركة المصنعة</label><select id="car_make" required></select><div class="err"></div></div>
+        <div><label for="car_model" data-i18n="l_model">الموديل</label><input id="car_model" maxlength="60" required><div class="err"></div></div>
+        <div><label for="car_year" data-i18n="l_year">سنة الصنع</label><select id="car_year" required></select><div class="err"></div></div>
+        <div><label for="car_trim"><span data-i18n="l_trim">الفئة</span> <span class="opt" data-i18n="opt">(اختياري)</span></label><input id="car_trim" maxlength="60"></div>
+        <div><label for="engine"><span data-i18n="l_engine">نوع المحرك</span> <span class="opt" data-i18n="opt">(اختياري)</span></label><input id="engine" maxlength="60" data-i18n-ph="ph_engine" placeholder="مثال: 2.5 لتر بنزين"></div>
+        <div><label for="vin"><span data-i18n="l_vin">رقم الهيكل VIN</span> <span class="opt" data-i18n="opt">(اختياري)</span></label><input id="vin" maxlength="17" dir="ltr" style="text-transform:uppercase"><div class="err"></div></div>
+      </div></div>
+
+      <div class="step-pane" data-step="1"><div class="fields">
+        <div><label for="part_name" data-i18n="l_part">اسم القطعة المطلوبة</label><input id="part_name" maxlength="150" required><div class="err"></div></div>
+        <div><label for="part_number"><span data-i18n="l_partno">رقم القطعة</span> <span class="opt" data-i18n="opt">(اختياري)</span></label><input id="part_number" maxlength="60" dir="ltr"></div>
+        <div><label for="part_condition" data-i18n="l_cond">حالة القطعة المطلوبة</label><select id="part_condition"><option value="new" data-i18n="c_new">جديدة</option><option value="used" data-i18n="c_used">مستعملة</option><option value="any" selected data-i18n="any">لا يهم</option></select></div>
+        <div><label for="part_type" data-i18n="l_type">نوع القطعة</label><select id="part_type"><option value="original" data-i18n="t_orig">أصلية</option><option value="aftermarket" data-i18n="t_after">تجارية</option><option value="any" selected data-i18n="any">لا يهم</option></select></div>
+        <div class="full"><label for="description"><span data-i18n="l_desc">وصف تفصيلي للقطعة</span> <span class="opt" data-i18n="opt">(اختياري)</span></label><textarea id="description" rows="4" maxlength="2000"></textarea></div>
+        <div class="full"><label for="images"><span data-i18n="l_imgs">صور القطعة أو الجزء المتضرر</span> <span class="opt" data-i18n="l_imgs_h">(حتى 6 صور، 5MB لكل صورة)</span></label>
+          <input id="images" type="file" accept="image/jpeg,image/png,image/webp" multiple><div class="err" id="imgErr"></div><div class="previews" id="previews"></div></div>
+      </div></div>
+
+      <div class="step-pane" data-step="2"><div class="fields">
+        <div><label for="customer_name" data-i18n="l_name">الاسم</label><input id="customer_name" maxlength="100" autocomplete="name" required><div class="err"></div></div>
+        <div><label for="phone" data-i18n="l_phone">رقم الجوال</label><input id="phone" type="tel" dir="ltr" placeholder="05xxxxxxxx" autocomplete="tel" required><div class="err"></div></div>
+        <div><label for="city" data-i18n="l_city">المدينة</label><select id="city" required></select><div class="err"></div></div>
+        <div><label for="contact_method" data-i18n="l_contact">وسيلة التواصل المفضلة</label><select id="contact_method"><option value="whatsapp" data-i18n="m_wa">واتساب</option><option value="call" data-i18n="m_call">اتصال</option><option value="sms" data-i18n="m_sms">رسالة نصية</option></select></div>
+        <input class="hp" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      </div></div>
+
+      <div id="formErr" class="alert error" hidden></div>
+      <div class="form-nav">
+        <button type="button" class="btn btn-outline" id="backBtn" data-i18n="back">السابق</button>
+        <button type="button" class="btn btn-primary" id="nextBtn" data-i18n="next">التالي</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn" data-i18n="submit">إرسال طلب توفير القطعة</button>
+      </div>
+    </form>
+    <div id="successBox" class="success" hidden>
+      <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3 data-i18n="ok_title">تم استلام طلبك بنجاح</h3>
+      <div class="reqno" id="reqNo"></div>
+      <p data-i18n="ok_msg">سيقوم فريق قطعتك بمراجعة طلبك والتواصل معك قريباً. احتفظ برقم الطلب للمراجعة.</p>
+      <p style="margin-top:16px"><button class="btn btn-outline" id="newReq" type="button" data-i18n="new_req">تقديم طلب جديد</button></p>
+    </div>
+  </div>
+</div></section>
+
+<section class="alt" id="about"><div class="container">
+  <h2 class="sec-title" data-i18n="about_title">من نحن</h2>
+  <p class="about" data-i18n="about_txt">قطعتك منصة سعودية متخصصة في استقبال طلبات البحث عن قطع غيار السيارات وتوفيرها حسب الطلب. لا نعمل كمتجر تقليدي ولا نمتلك مخزوناً ثابتاً؛ نبحث لك لدى موردين داخل السعودية وخارجها، ثم نعرض عليك الخيارات والأسعار المتاحة. الاتفاق والدفع والشراء والشحن تتم خارج الموقع بالتواصل المباشر معك.</p>
+</div></section>
+
+<section id="contact"><div class="container">
+  <div class="cta-band"><h2 data-i18n="band_t">جاهز لإيجاد قطعتك؟</h2><p data-i18n="band_d">أرسل طلبك الآن ودعنا نتولى البحث.</p><a class="btn btn-primary" href="#request" data-i18n="cta_request">اطلب قطعة غيار</a></div>
+  <h2 class="sec-title" style="margin-top:50px" data-i18n="nav_contact">تواصل معنا</h2>
+  <div class="contact-box" style="margin-top:20px">
+    <div class="card"><h3 data-i18n="ct_phone">اتصل بنا</h3><p dir="ltr"><a id="phoneLink" href="#"></a></p></div>
+    <div class="card"><h3 data-i18n="ct_wa">واتساب</h3><p><a id="waLink" class="btn btn-primary" target="_blank" rel="noopener" href="#" data-i18n="ct_wa_btn">ابدأ محادثة</a></p></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="container">
+  <div class="logo"><svg><use href="#gear"/></svg><span data-i18n="brand">قطعتك</span></div>
+  <div data-i18n="tagline">نبحث عنها، نوفرها لك.</div>
+  <small>© <span id="yr"></span> <span data-i18n="brand">قطعتك</span></small>
+</div></footer>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
